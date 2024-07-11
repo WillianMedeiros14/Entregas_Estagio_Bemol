@@ -5,7 +5,6 @@ Console.WriteLine(mensagemDeBoasVindas);
 
 List<string> listaDeProdutos = new List<string> { "Arroz", "Feijão" };
 
-
 void ExibirOpcoesDoMenu()
 {
     Console.WriteLine("\nDigite o número da opção:");
@@ -33,7 +32,6 @@ void ExibirOpcoesDoMenu()
             break;
     }
 }
-
 
 void CriarProduto()
 {
@@ -77,7 +75,6 @@ void ExibirTitutoDaOpcao(string titulo)
     Console.Write(asteriscos + "\n");
     Console.Write(titulo);
     Console.Write("\n" + asteriscos + "\n\n");
-
 }
 
 ExibirOpcoesDoMenu();
