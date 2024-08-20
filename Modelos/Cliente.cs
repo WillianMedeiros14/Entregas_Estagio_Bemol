@@ -1,4 +1,4 @@
-
+namespace Comex.Modelos;
 class Cliente
 {
     public String Nome { get; set; }
@@ -11,5 +11,10 @@ class Cliente
     public void AdicionaEndereco(Endereco endereco)
     {
         this.Endereco = endereco;
+    }
+
+    public string Identificar()
+    {
+        return $"Nome: {Nome}, CPF: {CPF}";
     }
 }

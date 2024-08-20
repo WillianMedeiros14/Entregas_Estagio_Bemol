@@ -1,6 +1,6 @@
+namespace Comex.Modelos;
 
-
-class Produto
+public class Produto
 {
     public String Nome { get; set; }
     public String Descricao { get; set; }

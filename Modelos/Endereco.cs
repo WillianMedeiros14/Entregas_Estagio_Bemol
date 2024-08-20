@@ -1,4 +1,4 @@
-
+namespace Comex.Modelos;
 class Endereco
 {
     public String Bairro { get; set; }

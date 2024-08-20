@@ -1,4 +1,6 @@
 ﻿
+using Comex.Modelos;
+
 string mensagemDeBoasVindas = "Bem-vindos ao Comex.";
 
 Console.WriteLine(mensagemDeBoasVindas);
@@ -29,8 +31,8 @@ listaDeClientes.Add(cliente1);
 
 List<Produto> produtos = new List<Produto>();
 produtos.Add(new Produto("Farinha", "Farinha da Vera Cruz", 10.5f, 2));
-
-
+produtos.Add(new Livro("A Fúria dos Reis. As Crônicas de Gelo e Fogo - Livro 2", "Edição comemorativa. Novo formato 16x23cm e nova capa, criada pelo ilustrador francês Marc Simonetti. De um dos maiores mestres da fantasia surge um épico magistral, poderoso como você jamais viu. ", 30.0f, 5, "854410293X", 656));
+produtos.Add(new ProdutoEletronico("Smartphone", "Celular com tela touch", 1200.0f, 15, 110, 20));
 
 void ExibirOpcoesDoMenu()
 {
@@ -63,7 +65,6 @@ void ExibirOpcoesDoMenu()
             break;
     }
 }
-
 
 void CriarProduto()
 {
@@ -104,7 +105,22 @@ void ListarProdutos()
         Console.WriteLine($"Nome: {produto.Nome}");
         Console.WriteLine($"Descrição: {produto.Descricao}");
         Console.WriteLine($"Preço Unitário: {produto.PrecoUnitario}");
-        Console.WriteLine($"Quantidade: {produto.Quantidade}\n");
+        Console.WriteLine($"Quantidade: {produto.Quantidade}");
+
+        if (produto is Livro livro)
+        {
+            Console.WriteLine($"ISBN: {livro.Isbn}");
+            Console.WriteLine($"Total de Páginas: {livro.TotalDePaginas}");
+        }
+
+        if (produto is ProdutoEletronico produtoEletronico)
+        {
+            Console.WriteLine($"Voltagem: {produtoEletronico.Voltagem}");
+            Console.WriteLine($"Potência: {produtoEletronico.Potencia}");
+        }
+
+
+        Console.WriteLine();
     }
 
     Console.WriteLine("\nPressione qualquer tecla para voltar ao menu principal");
@@ -114,7 +130,6 @@ void ListarProdutos()
     ExibirOpcoesDoMenu();
 
 }
-
 
 void ListarClientes()
 {
@@ -137,7 +152,8 @@ void ListarClientes()
         Console.WriteLine($"Cidade: {cliente.Endereco.Cidade}");
         Console.WriteLine($"Estado: {cliente.Endereco.Estado}");
 
-
+        Console.WriteLine($"\n -- Indentificação");
+        Console.WriteLine(cliente.Identificar());
     }
 
     Console.WriteLine("\nPressione qualquer tecla para voltar ao menu principal");
