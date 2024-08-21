@@ -1,6 +1,5 @@
-using Comex.Menus;
 
-namespace ScreenSound.Menus;
+namespace Comex.Menus;
 
 
 internal class MenuSair : Menu

@@ -1,7 +1,6 @@
 ﻿
 using Comex.Menus;
 using Comex.Modelos;
-using ScreenSound.Menus;
 
 string mensagemDeBoasVindas = "Bem-vindos ao Comex.";
 
@@ -36,12 +35,16 @@ produtos.Add(new Produto("Farinha", "Farinha da Vera Cruz", 10.5f, 2));
 produtos.Add(new Livro("A Fúria dos Reis. As Crônicas de Gelo e Fogo - Livro 2", "Edição comemorativa. Novo formato 16x23cm e nova capa, criada pelo ilustrador francês Marc Simonetti. De um dos maiores mestres da fantasia surge um épico magistral, poderoso como você jamais viu. ", 30.0f, 5, "854410293X", 656));
 produtos.Add(new ProdutoEletronico("Smartphone", "Celular com tela touch", 1200.0f, 15, 110, 20));
 
+MenuPrincipal menuPrincipal = new MenuPrincipal(produtos, listaDeClientes);
+menuPrincipal.Executar();
 
-Dictionary<int, Menu> opcoes = new();
-opcoes.Add(1, new MenuCriarProduto(produtos));
-opcoes.Add(2, new MenuListarProdutos(produtos));
-opcoes.Add(3, new MenuListarClientes(listaDeClientes));
-opcoes.Add(-1, new MenuSair());
+
+// Dictionary<int, Menu> opcoes = new();
+// opcoes.Add(1, new MenuCriarProduto(produtos));
+// opcoes.Add(2, new MenuListarProdutos(produtos));
+// opcoes.Add(3, new MenuListarClientes(listaDeClientes));
+// opcoes.Add(3, new MenuBuscaExternaProdutos());
+// opcoes.Add(-1, new MenuSair());
 
 void ExibirOpcoesDoMenu()
 {
@@ -55,22 +58,22 @@ void ExibirOpcoesDoMenu()
     string opcaoEscolhida = Console.ReadLine()!;
     int opcaoScolhidaNumerica = int.Parse(opcaoEscolhida);
 
-    if (opcoes.ContainsKey(opcaoScolhidaNumerica))
-    {
+    // if (opcoes.ContainsKey(opcaoScolhidaNumerica))
+    // {
 
-        Menu menuASerExibido = opcoes[opcaoScolhidaNumerica];
-        menuASerExibido.Executar();
-        if (opcaoScolhidaNumerica > 0) ExibirOpcoesDoMenu();
-    }
-    else
-    {
+    //     Menu menuASerExibido = opcoes[opcaoScolhidaNumerica];
+    //     menuASerExibido.Executar();
+    //     if (opcaoScolhidaNumerica > 0) ExibirOpcoesDoMenu();
+    // }
+    // else
+    // {
 
-        Console.Clear();
-        Console.WriteLine("Opção inválida");
+    //     Console.Clear();
+    //     Console.WriteLine("Opção inválida");
 
-        ExibirOpcoesDoMenu();
-    }
+    //     ExibirOpcoesDoMenu();
+    // }
 
 }
 
-ExibirOpcoesDoMenu();
+// ExibirOpcoesDoMenu();
