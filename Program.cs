@@ -6,8 +6,6 @@ string mensagemDeBoasVindas = "Bem-vindos ao Comex.";
 
 Console.WriteLine(mensagemDeBoasVindas);
 
-List<string> listaDeProdutos = new List<string> { "Arroz", "Feijão" };
-
 List<Cliente> listaDeClientes = new List<Cliente>();
 
 Cliente cliente1 = new();
@@ -37,43 +35,3 @@ produtos.Add(new ProdutoEletronico("Smartphone", "Celular com tela touch", 1200.
 
 MenuPrincipal menuPrincipal = new MenuPrincipal(produtos, listaDeClientes);
 menuPrincipal.Executar();
-
-
-// Dictionary<int, Menu> opcoes = new();
-// opcoes.Add(1, new MenuCriarProduto(produtos));
-// opcoes.Add(2, new MenuListarProdutos(produtos));
-// opcoes.Add(3, new MenuListarClientes(listaDeClientes));
-// opcoes.Add(3, new MenuBuscaExternaProdutos());
-// opcoes.Add(-1, new MenuSair());
-
-void ExibirOpcoesDoMenu()
-{
-    Console.WriteLine("\nDigite o número da opção:");
-    Console.WriteLine("1: Criar Produto");
-    Console.WriteLine("2: Listar Produtos");
-    Console.WriteLine("3: Listar Clientes");
-    Console.WriteLine("-1: Sair");
-
-    Console.Write("\nDigite a sua opção: ");
-    string opcaoEscolhida = Console.ReadLine()!;
-    int opcaoScolhidaNumerica = int.Parse(opcaoEscolhida);
-
-    // if (opcoes.ContainsKey(opcaoScolhidaNumerica))
-    // {
-
-    //     Menu menuASerExibido = opcoes[opcaoScolhidaNumerica];
-    //     menuASerExibido.Executar();
-    //     if (opcaoScolhidaNumerica > 0) ExibirOpcoesDoMenu();
-    // }
-    // else
-    // {
-
-    //     Console.Clear();
-    //     Console.WriteLine("Opção inválida");
-
-    //     ExibirOpcoesDoMenu();
-    // }
-
-}
-
-// ExibirOpcoesDoMenu();
