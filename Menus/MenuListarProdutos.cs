@@ -14,13 +14,23 @@ internal class MenuListarProdutos : Menu
 
         ExibirTituloDaOpcao("Exibindo todos os produtos cadastrados");
 
+        ExibirProdutos(_produtos);
+
+        Console.WriteLine("\nDigite uma tecla para voltar ao menu principal");
+        Console.ReadKey();
+        Console.Clear();
+    }
+
+
+    public void ExibirProdutos(List<Produto> produtos)
+    {
         if (_produtos.Count == 0)
         {
             Console.WriteLine("Nenhum produto cadastrado.");
         }
         else
         {
-            foreach (var produto in _produtos)
+            foreach (var produto in produtos)
             {
                 Console.WriteLine($"Nome: {produto.Nome}");
                 Console.WriteLine($"Descrição: {produto.Descricao}");
@@ -44,9 +54,5 @@ internal class MenuListarProdutos : Menu
             }
 
         }
-
-        Console.WriteLine("\nDigite uma tecla para voltar ao menu principal");
-        Console.ReadKey();
-        Console.Clear();
     }
 }

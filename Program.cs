@@ -35,3 +35,4 @@ produtos.Add(new ProdutoEletronico("Smartphone", "Celular com tela touch", 1200.
 
 MenuPrincipal menuPrincipal = new MenuPrincipal(produtos, listaDeClientes);
 menuPrincipal.Executar();
+

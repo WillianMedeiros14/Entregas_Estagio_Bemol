@@ -34,7 +34,6 @@ internal class MenuPrincipal : Menu
 
                 if (opcaoEscolhidaNumerica == -1)
                 {
-
                     break;
                 }
             }
