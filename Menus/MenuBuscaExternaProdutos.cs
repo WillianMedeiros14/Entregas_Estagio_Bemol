@@ -69,59 +69,89 @@ internal class MenuBuscaExternaProdutos : Menu
 
     private async Task ListarTodosOsProdutosExternos()
     {
-        HttpClient httpClient = new();
+        try
+        {
+            HttpClient httpClient = new();
 
-        Console.WriteLine("Buscando todos os produtos...");
+            Console.WriteLine("Buscando todos os produtos...");
 
-        string resposta = await httpClient.GetStringAsync("https://fakestoreapi.com/products");
-        List<Produto>? produtos = JsonSerializer.Deserialize<List<Produto>>(resposta);
+            string resposta = await httpClient.GetStringAsync("https://fakestoreapi.com/products");
+            List<Produto>? produtos = JsonSerializer.Deserialize<List<Produto>>(resposta);
 
+            Console.Clear();
 
+            MenuListarProdutosExternos listarProdutosMenu = new MenuListarProdutosExternos(produtos);
+            listarProdutosMenu.Executar();
 
-        Console.Clear();
+            Console.WriteLine("\nDigite uma tecla para voltar ao menu");
+            Console.ReadKey();
+            Console.Clear();
+        }
+        catch (System.Exception ex)
+        {
+            Console.WriteLine($"Temos um problema: {ex.Message}");
 
-        MenuListarProdutosExternos listarProdutosMenu = new MenuListarProdutosExternos(produtos);
-        listarProdutosMenu.Executar();
-
-        Console.WriteLine("\nDigite uma tecla para voltar ao menu");
-        Console.ReadKey();
-        Console.Clear();
+            Console.WriteLine("\nDigite uma tecla para voltar ao menu");
+            Console.ReadKey();
+            Console.Clear();
+        }
     }
 
 
     private async Task ListarTodosOsProdutosExternosPorNome()
     {
-        HttpClient httpClient = new();
+        try
+        {
+            HttpClient httpClient = new();
 
-        Console.WriteLine("Buscando todos os produtos...");
+            Console.WriteLine("Buscando todos os produtos...");
 
-        string resposta = await httpClient.GetStringAsync("https://fakestoreapi.com/products");
-        List<Produto>? produtos = JsonSerializer.Deserialize<List<Produto>>(resposta);
+            string resposta = await httpClient.GetStringAsync("https://fakestoreapi.com/products");
+            List<Produto>? produtos = JsonSerializer.Deserialize<List<Produto>>(resposta);
 
-        LinqOrder.ExibirListaDeProdutosOrdenados(produtos);
+            LinqOrder.ExibirListaDeProdutosOrdenados(produtos);
 
-        Console.WriteLine("\nDigite uma tecla para voltar ao menu");
-        Console.ReadKey();
-        Console.Clear();
+            Console.WriteLine("\nDigite uma tecla para voltar ao menu");
+            Console.ReadKey();
+            Console.Clear();
+        }
+        catch (System.Exception ex)
+        {
+            Console.WriteLine($"Temos um problema: {ex.Message}");
+
+            Console.WriteLine("\nDigite uma tecla para voltar ao menu");
+            Console.ReadKey();
+            Console.Clear();
+        }
     }
 
 
     private async Task ListarTodosOsProdutosExternosPorPreco()
     {
-        HttpClient httpClient = new();
+        try
+        {
+            HttpClient httpClient = new();
 
-        Console.WriteLine("Buscando todos os produtos...");
+            Console.WriteLine("Buscando todos os produtos...");
 
-        string resposta = await httpClient.GetStringAsync("https://fakestoreapi.com/products");
-        List<Produto>? produtos = JsonSerializer.Deserialize<List<Produto>>(resposta);
+            string resposta = await httpClient.GetStringAsync("https://fakestoreapi.com/products");
+            List<Produto>? produtos = JsonSerializer.Deserialize<List<Produto>>(resposta);
 
-        LinqOrder.ExibirListaDeProdutosOrdenadosPorPreco(produtos);
+            LinqOrder.ExibirListaDeProdutosOrdenadosPorPreco(produtos);
 
-        Console.WriteLine("\nDigite uma tecla para voltar ao menu");
-        Console.ReadKey();
-        Console.Clear();
+            Console.WriteLine("\nDigite uma tecla para voltar ao menu");
+            Console.ReadKey();
+            Console.Clear();
+        }
+        catch (System.Exception ex)
+        {
+            Console.WriteLine($"Temos um problema: {ex.Message}");
+
+            Console.WriteLine("\nDigite uma tecla para voltar ao menu");
+            Console.ReadKey();
+            Console.Clear();
+        }
     }
-
 
     private void ExibirOpcoesDoMenu()
     {
