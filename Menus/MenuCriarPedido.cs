@@ -11,71 +11,81 @@ internal class MenuCriarPedido : Menu
         _produtos = produtos;
         _clientes = clientes;
     }
+
     public override void Executar()
     {
         base.Executar();
         ExibirTituloDaOpcao("Criação de pedido");
 
-        Console.Write("Digite o nome do produto: ");
-        string nomeDoProduto = Console.ReadLine()!;
+        Console.Write("Digite o nome do Cliente: ");
+        string nomeDoCliente = Console.ReadLine()!;
 
-        var produtoFiltrado = _produtos.Where(p => p.Nome.Contains(nomeDoProduto)).Take(1).ToList();
+        List<Cliente> clienteFiltrado = _clientes.Where(p => p.Nome.Contains(nomeDoCliente)).Take(1).ToList();
 
-        if (produtoFiltrado.Any())
+        if (clienteFiltrado.Any())
         {
-            Console.Clear();
-            Console.WriteLine(" - Detalhes do produto -\n");
+            Console.WriteLine("\n - Detalhes do Cliente -\n");
 
-            MenuListarProdutos listarProduto = new MenuListarProdutos(produtoFiltrado);
-            listarProduto.ExibirProdutos(produtoFiltrado);
+            MenuListarClientes listarCliente = new MenuListarClientes(clienteFiltrado);
+            listarCliente.ListarClientes(clienteFiltrado);
 
+            Pedido pedido = new Pedido(clienteFiltrado[0], DateTime.Now);
 
-            Console.Write("\nDigite o nome do Cliente: ");
-            string nomeDoCliente = Console.ReadLine()!;
-
-            var clienteFiltrado = _clientes.Where(p => p.Nome.Contains(nomeDoCliente)).Take(1).ToList();
-
-            if (clienteFiltrado.Any())
+            bool adicionarMaisItens;
+            do
             {
-                Console.WriteLine("\n - Detalhes do Cliente -\n");
+                Console.Write("\nDigite o nome do produto: ");
+                string nomeDoProduto = Console.ReadLine()!;
 
-                MenuListarClientes listarCliente = new MenuListarClientes(clienteFiltrado);
-                listarCliente.ListarClientes(clienteFiltrado);
+                List<Produto> produtoFiltrado = _produtos.Where(p => p.Nome.Contains(nomeDoProduto)).Take(1).ToList();
 
-                Console.WriteLine("\nDigite uma tecla para voltar ao menu principal");
-                Console.ReadKey();
-            }
+                if (produtoFiltrado.Any())
+                {
+                    Console.WriteLine("\n - Detalhes do produto -\n");
 
+                    MenuListarProdutos listarProduto = new MenuListarProdutos(produtoFiltrado);
+                    listarProduto.ExibirProdutos(produtoFiltrado);
+
+                    Console.Write("\nDigite a quantidade de items: ");
+                    int quantidade = int.Parse(Console.ReadLine()!);
+
+                    ItemDePedido itemPedido = new ItemDePedido
+                    {
+                        Produto = produtoFiltrado[0],
+                        Quantidade = quantidade,
+                    };
+
+                    pedido.AdicionarItem(itemPedido);
+
+                    Console.WriteLine($"\nItem '{itemPedido.Produto.Nome}' adicionado ao pedido com sucesso!");
+                }
+                else
+                {
+                    Console.WriteLine("Nenhum produto encontrado com o nome especificado.");
+                }
+
+
+                Console.Write("\nDeseja adicionar mais itens ao pedido? (S/N): ");
+                string resposta = Console.ReadLine()!.ToUpper();
+                adicionarMaisItens = resposta == "S";
+
+            } while (adicionarMaisItens);
+
+            Console.WriteLine("\n - Resumo do Pedido -\n");
+            Console.WriteLine($"Cliente: {pedido.Cliente.Nome}");
+            Console.WriteLine($"Data: {pedido.Data}");
+            Console.WriteLine($"Total: {pedido.Total:C}");
+
+            Console.WriteLine("\nDigite uma tecla para voltar ao menu principal");
+            Console.ReadKey();
         }
         else
         {
-            Console.WriteLine("Nenhum produto encontrado com o nome especificado.");
+            Console.WriteLine("Nenhum cliente encontrado com o nome especificado.");
             Console.WriteLine("\nDigite uma tecla para voltar ao menu principal");
             Console.ReadKey();
-            Console.Clear();
         }
 
-
-        // Console.Write("Nome: ");
-        // string nomeDoProduto = Console.ReadLine()!;        
-
-        // Console.Write("Descrição: ");
-        // string descricaoDoProduto = Console.ReadLine()!;
-
-        // Console.Write("Preço unitário: ");
-        // float precoUnitarioDoProduto = float.Parse(Console.ReadLine()!);
-
-        // Console.Write("Quantidade: ");
-        // int quantidadeDoProduto = int.Parse(Console.ReadLine()!);
-
-        // Produto produto = new(nomeDoProduto, descricaoDoProduto, precoUnitarioDoProduto, quantidadeDoProduto);
-
-
-        // _produtos.Add(produto);
-
-        // Console.Write($"\nO produto {nomeDoProduto} foi registrado com sucesso");
-        // Thread.Sleep(2000);
         Console.Clear();
-
     }
 }

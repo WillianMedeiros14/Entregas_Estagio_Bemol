@@ -7,6 +7,12 @@ class Pedido
 
     public float Total { get; set; }
 
+    public Pedido(Cliente cliente, DateTime data)
+    {
+        Cliente = cliente;
+        Data = data;
+    }
+
     public void AdicionarItem(ItemDePedido item)
     {
         Items.Add(item);
