@@ -14,6 +14,15 @@ internal class MenuListarClientes : Menu
 
         ExibirTituloDaOpcao("Exibindo todos os clientes cadastrados");
 
+        ListarClientes(_clientes);
+
+        Console.WriteLine("\nDigite uma tecla para voltar ao menu principal");
+        Console.ReadKey();
+        Console.Clear();
+    }
+
+    internal void ListarClientes(List<Cliente> clientes)
+    {
         if (_clientes.Count == 0)
         {
             Console.WriteLine("Nenhum cliente cadastrado.");
@@ -21,7 +30,7 @@ internal class MenuListarClientes : Menu
         else
         {
 
-            foreach (var cliente in _clientes)
+            foreach (var cliente in clientes)
             {
                 Console.WriteLine($"Nome: {cliente.Nome}");
                 Console.WriteLine($"CPF: {cliente.CPF}");
@@ -42,8 +51,5 @@ internal class MenuListarClientes : Menu
             }
         }
 
-        Console.WriteLine("\nDigite uma tecla para voltar ao menu principal");
-        Console.ReadKey();
-        Console.Clear();
     }
 }

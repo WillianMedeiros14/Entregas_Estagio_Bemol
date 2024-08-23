@@ -12,8 +12,10 @@ internal class MenuPrincipal : Menu
             {
                 { 1, new MenuCriarProduto(produtos) },
                 { 2, new MenuListarProdutos(produtos) },
-                { 3, new MenuListarClientes(clientes) },
-                { 4, new MenuBuscaExternaProdutos(this) },
+                { 3, new MenuCriarPedido(produtos, clientes) },
+                { 4, new MenuCriarPedido(produtos, clientes) },
+                { 5, new MenuListarClientes(clientes) },
+                { 6, new MenuBuscaExternaProdutos(this) },
                 { -1, new MenuSair() }
             };
     }
@@ -50,8 +52,10 @@ internal class MenuPrincipal : Menu
         Console.WriteLine("\nDigite o número da opção:");
         Console.WriteLine("1: Criar Produto");
         Console.WriteLine("2: Listar Produtos");
-        Console.WriteLine("3: Listar Clientes");
-        Console.WriteLine("4: Buscar Produtos Externos");
+        Console.WriteLine("3: Criar Pedido");
+        Console.WriteLine("4: Listar Pedios");
+        Console.WriteLine("5: Listar Clientes");
+        Console.WriteLine("6: Buscar Produtos Externos");
         Console.WriteLine("-1: Sair");
         Console.Write("\nDigite a sua opção: ");
     }
