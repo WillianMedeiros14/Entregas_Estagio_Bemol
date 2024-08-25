@@ -28,6 +28,26 @@ cliente1.AdicionaEndereco(endereco1);
 
 listaDeClientes.Add(cliente1);
 
+Cliente cliente2 = new Cliente();
+Endereco endereco2 = new Endereco();
+
+cliente2.Nome = "Maria Souza";
+cliente2.CPF = "111-111-111-11";
+cliente2.Email = "maria.souza@example.com";
+cliente2.Profissao = "Engenheira";
+cliente2.Telefone = "993254789";
+
+endereco2.Rua = "Rua das Flores";
+endereco2.Numero = 200;
+endereco2.Complemento = "Apto 304";
+endereco2.Bairro = "Centro";
+endereco2.Cidade = "Manaus";
+endereco2.Estado = "AM";
+
+cliente2.AdicionaEndereco(endereco2);
+listaDeClientes.Add(cliente2);
+
+
 List<Produto> produtos = new List<Produto>();
 produtos.Add(new Produto("Farinha", "Farinha da Vera Cruz", 10.5f, 2));
 produtos.Add(new Produto("Arroz", "Arroz Parboilizado, da marca Tio João, em embalagem com 1 quilo.", 8.39f, 3));

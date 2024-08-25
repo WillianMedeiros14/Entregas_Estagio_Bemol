@@ -28,8 +28,6 @@ internal class MenuCriarPedido : Menu
 
         if (clienteFiltrado.Any())
         {
-            Console.WriteLine("\n - Detalhes do Cliente -\n");
-
             MenuListarClientes listarCliente = new MenuListarClientes(clienteFiltrado);
             listarCliente.ListarClientes(clienteFiltrado);
 
@@ -45,7 +43,6 @@ internal class MenuCriarPedido : Menu
 
                 if (produtoFiltrado.Any())
                 {
-                    Console.WriteLine("\n - Detalhes do produto -\n");
 
                     MenuListarProdutos listarProduto = new MenuListarProdutos(produtoFiltrado);
                     listarProduto.ExibirProdutos(produtoFiltrado);

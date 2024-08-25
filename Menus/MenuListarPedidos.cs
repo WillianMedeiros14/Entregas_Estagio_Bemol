@@ -1,5 +1,7 @@
 using Comex.Menus;
 using Comex.Modelos;
+using Spectre.Console;
+
 
 internal class MenuListarPedidos : Menu
 {
@@ -30,23 +32,32 @@ internal class MenuListarPedidos : Menu
         }
         else
         {
+
             foreach (Pedido pedido in pedidos)
             {
+
                 List<Cliente> listaDeClientes = new List<Cliente> { pedido.Cliente };
                 MenuListarClientes listarClientes = new MenuListarClientes(listaDeClientes);
-                listarClientes.ListarClientes(listaDeClientes);
+                listarClientes.ListarClientes(listaDeClientes, false);
 
                 Console.WriteLine();
 
+                var itemTable = new Table();
+                itemTable.Title("Itens do Pedido");
+                itemTable.AddColumn("Nome");
+                itemTable.AddColumn("Preço Unitário");
+                itemTable.AddColumn("Quantidade");
+                itemTable.AddColumn("Subtotal");
+
                 foreach (ItemDePedido itemPedido in pedido.Items)
                 {
-                    Console.WriteLine($"Nome: {itemPedido.Produto.Nome}");
-                    Console.WriteLine($"Preço unitário: {itemPedido.Produto.PrecoUnitario}");
-                    Console.WriteLine($"Quantidade: {itemPedido.Quantidade}");
-                    Console.WriteLine($"Subtotal: {itemPedido.Subtotal}");
-
-                    Console.WriteLine();
+                    itemTable.AddRow(itemPedido.Produto.Nome,
+                                     itemPedido.Produto.PrecoUnitario.ToString("C"),
+                                     itemPedido.Quantidade.ToString(),
+                                     itemPedido.Subtotal.ToString("C"));
                 }
+
+                AnsiConsole.Write(itemTable);
 
                 Console.WriteLine($"Data: {pedido.Data}");
                 Console.WriteLine($"Total: {pedido.Total:C}");
@@ -60,4 +71,6 @@ internal class MenuListarPedidos : Menu
         Console.ReadKey();
         Console.Clear();
     }
+
+
 }

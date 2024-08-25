@@ -1,5 +1,6 @@
 using Comex.Menus;
 using Comex.Modelos;
+using Spectre.Console;
 
 internal class MenuListarClientes : Menu
 {
@@ -21,35 +22,51 @@ internal class MenuListarClientes : Menu
         Console.Clear();
     }
 
-    internal void ListarClientes(List<Cliente> clientes)
+
+
+    internal void ListarClientes(List<Cliente> clientes, bool mostrarIdentificacao = true)
     {
-        if (_clientes.Count == 0)
+        if (clientes.Count == 0)
         {
             Console.WriteLine("Nenhum cliente cadastrado.");
         }
         else
         {
 
+            var table = new Table();
+
+            table.Title("Clientes");
+            table.Title("Cliente");
+            table.AddColumn("Nome");
+            table.AddColumn("CPF");
+            table.AddColumn("E-mail");
+            table.AddColumn("Profissão");
+            table.AddColumn("Telefone");
+            table.AddColumn("Rua");
+            table.AddColumn("Número");
+            table.AddColumn("Complemento");
+            table.AddColumn("Bairro");
+            table.AddColumn("Cidade");
+            table.AddColumn("Estado");
+
             foreach (var cliente in clientes)
             {
-                Console.WriteLine($"Nome: {cliente.Nome}");
-                Console.WriteLine($"CPF: {cliente.CPF}");
-                Console.WriteLine($"E-mail: {cliente.Email}");
-                Console.WriteLine($"Profissão: {cliente.Profissao}");
-                Console.WriteLine($"Telefone: {cliente.Telefone}");
-                Console.WriteLine($"Profissão: {cliente.Profissao}");
+                table.AddRow(cliente.Nome, cliente.CPF, cliente.Email, cliente.Profissao, cliente.Telefone,
+                             cliente.Endereco.Rua, cliente.Endereco.Numero.ToString(), cliente.Endereco.Complemento,
+                             cliente.Endereco.Bairro, cliente.Endereco.Cidade, cliente.Endereco.Estado);
+            }
 
-                Console.WriteLine($"Rua: {cliente.Endereco.Rua}");
-                Console.WriteLine($"Número: {cliente.Endereco.Numero}");
-                Console.WriteLine($"Complemento: {cliente.Endereco.Complemento}");
-                Console.WriteLine($"Bairro: {cliente.Endereco.Bairro}");
-                Console.WriteLine($"Cidade: {cliente.Endereco.Cidade}");
-                Console.WriteLine($"Estado: {cliente.Endereco.Estado}");
+            AnsiConsole.Write(table);
 
-                Console.WriteLine($"\n -- Indentificação");
-                Console.WriteLine(cliente.Identificar());
+            if (mostrarIdentificacao)
+            {
+                Console.WriteLine("\n -- Identificação");
+                foreach (var cliente in clientes)
+                {
+                    Console.WriteLine(cliente.Identificar());
+                }
             }
         }
-
     }
+
 }

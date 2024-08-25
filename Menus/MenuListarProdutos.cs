@@ -1,5 +1,7 @@
 using Comex.Menus;
 using Comex.Modelos;
+using Spectre.Console;
+
 
 internal class MenuListarProdutos : Menu
 {
@@ -22,37 +24,55 @@ internal class MenuListarProdutos : Menu
     }
 
 
+
     public void ExibirProdutos(List<Produto> produtos)
     {
-        if (_produtos.Count == 0)
+        if (produtos.Count == 0)
         {
             Console.WriteLine("Nenhum produto cadastrado.");
         }
         else
         {
+            var table = new Table();
+
+            table.Title("Produtos");
+            table.AddColumn("Nome");
+            table.AddColumn("Descrição");
+            table.AddColumn("Preço Unitário");
+            table.AddColumn("Quantidade");
+            table.AddColumn("Tipo");
+            table.AddColumn("Detalhes");
+
             foreach (var produto in produtos)
             {
-                Console.WriteLine($"Nome: {produto.Nome}");
-                Console.WriteLine($"Descrição: {produto.Descricao}");
-                Console.WriteLine($"Preço Unitário: {produto.PrecoUnitario}");
-                Console.WriteLine($"Quantidade: {produto.Quantidade}");
+                string tipoProduto = "";
+                string detalhesProduto = "";
 
                 if (produto is Livro livro)
                 {
-                    Console.WriteLine($"ISBN: {livro.Isbn}");
-                    Console.WriteLine($"Total de Páginas: {livro.TotalDePaginas}");
+                    tipoProduto = "Livro";
+                    detalhesProduto = $"ISBN: {livro.Isbn}, Páginas: {livro.TotalDePaginas}";
                 }
-
-                if (produto is ProdutoEletronico produtoEletronico)
+                else if (produto is ProdutoEletronico produtoEletronico)
                 {
-                    Console.WriteLine($"Voltagem: {produtoEletronico.Voltagem}");
-                    Console.WriteLine($"Potência: {produtoEletronico.Potencia}");
+                    tipoProduto = "Produto Eletrônico";
+                    detalhesProduto = $"Voltagem: {produtoEletronico.Voltagem}, Potência: {produtoEletronico.Potencia}";
+                }
+                else
+                {
+                    tipoProduto = "Produto";
+                    detalhesProduto = "";
                 }
 
+                table.AddRow(produto.Nome, produto.Descricao, produto.PrecoUnitario.ToString("C"),
+                             produto.Quantidade.ToString(), tipoProduto, detalhesProduto);
 
-                Console.WriteLine();
+                table.AddRow(" ");
             }
 
+            AnsiConsole.Write(table);
         }
     }
+
+
 }
