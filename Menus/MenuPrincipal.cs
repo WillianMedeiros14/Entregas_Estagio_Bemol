@@ -1,15 +1,15 @@
+using Spectre.Console;
 using Comex.Modelos;
 
-namespace Comex.Menus;
-internal class MenuPrincipal : Menu
+namespace Comex.Menus
 {
-    private readonly Dictionary<int, Menu> opcoes;
-
-    private readonly List<Pedido> pedidos = new List<Pedido>();
-
-    public MenuPrincipal(List<Produto> produtos, List<Cliente> clientes, List<Pedido> pedidos)
+    internal class MenuPrincipal : Menu
     {
-        opcoes = new Dictionary<int, Menu>
+        private readonly Dictionary<int, Menu> opcoes;
+
+        public MenuPrincipal(List<Produto> produtos, List<Cliente> clientes, List<Pedido> pedidos)
+        {
+            opcoes = new Dictionary<int, Menu>
             {
                 { 1, new MenuCriarProduto(produtos) },
                 { 2, new MenuListarProdutos(produtos) },
@@ -19,45 +19,64 @@ internal class MenuPrincipal : Menu
                 { 6, new MenuBuscaExternaProdutos(this) },
                 { -1, new MenuSair() }
             };
-    }
+        }
 
-    public override void Executar()
-    {
-        while (true)
+        public override void Executar()
         {
-            ExibirOpcoesDoMenu();
-
-            string opcaoEscolhida = Console.ReadLine()!;
-            int opcaoEscolhidaNumerica = int.Parse(opcaoEscolhida);
-
-            if (opcoes.ContainsKey(opcaoEscolhidaNumerica))
+            while (true)
             {
-                Menu menuASerExibido = opcoes[opcaoEscolhidaNumerica];
-                menuASerExibido.Executar();
+                int opcaoEscolhida = int.Parse(ExibirOpcoesDoMenu());
 
-                if (opcaoEscolhidaNumerica == -1)
+
+                if (opcoes.ContainsKey(opcaoEscolhida))
                 {
-                    break;
+
+                    Menu menuASerExibido = opcoes[opcaoEscolhida];
+                    menuASerExibido.Executar();
+
+                    if (opcaoEscolhida == -1)
+                    {
+                        break;
+                    }
+
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Opção inválida\n");
+                    }
                 }
             }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine("Opção inválida\n");
-            }
         }
-    }
 
-    private void ExibirOpcoesDoMenu()
-    {
-        Console.WriteLine("\nDigite o número da opção:");
-        Console.WriteLine("1: Criar Produto");
-        Console.WriteLine("2: Listar Produtos");
-        Console.WriteLine("3: Criar Pedido");
-        Console.WriteLine("4: Listar Pedidos");
-        Console.WriteLine("5: Listar Clientes");
-        Console.WriteLine("6: Buscar Produtos Externos");
-        Console.WriteLine("-1: Sair");
-        Console.Write("\nDigite a sua opção: ");
+        private string ExibirOpcoesDoMenu()
+        {
+
+            var opcoes = new[]
+            {
+                "Criar Produto",
+                "Listar Produtos",
+                "Criar Pedido",
+                "Listar Pedidos",
+                "Listar Clientes",
+                "Buscar Produtos Externos",
+                "Sair"
+            };
+
+
+            string escolha = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("Selecione uma opção:")
+                    .AddChoices(opcoes)
+            );
+
+
+            var opcaoEscolhida = opcoes.ToList().IndexOf(escolha) + 1;
+            if (opcaoEscolhida == opcoes.Length)
+            {
+                opcaoEscolhida = -1;
+            }
+
+            return opcaoEscolhida.ToString();
+        }
     }
 }
