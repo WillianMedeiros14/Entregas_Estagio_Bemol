@@ -1,5 +1,6 @@
 using Comex.Menus;
 using Comex.Modelos;
+using Spectre.Console;
 
 internal class MenuListarProdutosExternos : Menu
 {
@@ -9,28 +10,36 @@ internal class MenuListarProdutosExternos : Menu
     {
         _produtos = produtos;
     }
+
     public override void Executar()
     {
         ExibirTituloDaOpcao("Exibindo todos os produtos cadastrados");
 
         if (_produtos.Count == 0)
         {
-            Console.WriteLine("Nenhum produto cadastrado.");
+            AnsiConsole.MarkupLine("[red]Nenhum produto cadastrado.[/]");
         }
         else
         {
+            var table = new Table();
+            table.AddColumn("Nome");
+            table.AddColumn("Descrição");
+            table.AddColumn("Preço Unitário");
+            table.AddColumn("Quantidade");
+
             foreach (var produto in _produtos)
             {
-                Console.WriteLine($"Nome: {produto.Nome}");
-                Console.WriteLine($"Descrição: {produto.Descricao}");
-                Console.WriteLine($"Preço Unitário: {produto.PrecoUnitario}");
-                Console.WriteLine($"Quantidade: {produto.Quantidade}");
-
-                Console.WriteLine();
+                table.AddRow(
+                    produto.Nome,
+                    produto.Descricao,
+                    produto.PrecoUnitario.ToString("C"),
+                    produto.Quantidade.ToString()
+                );
+                table.AddRow(" ");
             }
 
+
+            AnsiConsole.Write(table);
         }
-
     }
-
 }
