@@ -5,11 +5,13 @@ internal class MenuCriarPedido : Menu
 {
     private readonly List<Produto> _produtos;
     private readonly List<Cliente> _clientes;
+    public readonly List<Pedido> _pedidos;
 
-    public MenuCriarPedido(List<Produto> produtos, List<Cliente> clientes)
+    public MenuCriarPedido(List<Produto> produtos, List<Cliente> clientes, List<Pedido> pedidos)
     {
         _produtos = produtos;
         _clientes = clientes;
+        _pedidos = pedidos;
     }
 
     public override void Executar()
@@ -21,6 +23,8 @@ internal class MenuCriarPedido : Menu
         string nomeDoCliente = Console.ReadLine()!;
 
         List<Cliente> clienteFiltrado = _clientes.Where(p => p.Nome.Contains(nomeDoCliente)).Take(1).ToList();
+
+
 
         if (clienteFiltrado.Any())
         {
@@ -57,6 +61,7 @@ internal class MenuCriarPedido : Menu
 
                     pedido.AdicionarItem(itemPedido);
 
+
                     Console.WriteLine($"\nItem '{itemPedido.Produto.Nome}' adicionado ao pedido com sucesso!");
                 }
                 else
@@ -70,6 +75,8 @@ internal class MenuCriarPedido : Menu
                 adicionarMaisItens = resposta == "S";
 
             } while (adicionarMaisItens);
+
+            _pedidos.Add(pedido);
 
             Console.WriteLine("\n - Resumo do Pedido -\n");
             Console.WriteLine($"Cliente: {pedido.Cliente.Nome}");

@@ -25,4 +25,12 @@ internal class LinqOrder
             Console.WriteLine($"- {produto.Nome} = {produto.PrecoUnitario}");
         }
     }
+
+    public static List<Pedido> BuscarPediosOrdenadosPorNome(List<Pedido> pedidos)
+    {
+        List<Pedido> pedidosOrdenados = pedidos.OrderBy(pedido => pedido.Cliente.Nome).Distinct().ToList();
+
+        Console.WriteLine($"Lista de pedidos ordenados por nome no Cliente\n");
+        return pedidos;
+    }
 }

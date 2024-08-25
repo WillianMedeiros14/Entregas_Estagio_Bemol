@@ -5,5 +5,4 @@ class ItemDePedido
     public int Quantidade { get; set; }
     public float PrecoUnitario => Produto.PrecoUnitario;
     public float Subtotal => Quantidade * PrecoUnitario;
-
 }
