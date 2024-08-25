@@ -2,6 +2,7 @@ using System.Text.Json;
 using Comex.Filtros;
 using Comex.Menus;
 using Comex.Modelos;
+using Spectre.Console;
 
 internal class MenuBuscaExternaProdutos : Menu
 {
@@ -46,15 +47,13 @@ internal class MenuBuscaExternaProdutos : Menu
             base.Executar();
             ExibirTituloDaOpcao("Buscar produtos externos");
 
-            ExibirOpcoesDoMenu();
+            int opcaoEscolhida = int.Parse(ExibirOpcoesDoMenu());
 
-            string opcaoEscolhida = Console.ReadLine()!;
-            int opcaoEscolhidaNumerica = int.Parse(opcaoEscolhida);
 
-            if (opcoes.ContainsKey(opcaoEscolhidaNumerica))
+            if (opcoes.ContainsKey(opcaoEscolhida))
             {
-                opcoes[opcaoEscolhidaNumerica].Invoke();
-                if (opcaoEscolhidaNumerica == -1)
+                opcoes[opcaoEscolhida].Invoke();
+                if (opcaoEscolhida == -1)
                 {
                     break;
                 }
@@ -153,15 +152,33 @@ internal class MenuBuscaExternaProdutos : Menu
         }
     }
 
-    private void ExibirOpcoesDoMenu()
+    private string ExibirOpcoesDoMenu()
     {
-        Console.WriteLine("\nDigite o número da opção:");
-        Console.WriteLine("1: Listar todos os produtos");
-        Console.WriteLine("2: Listar todos os produtos ordenados por nome");
-        Console.WriteLine("3: Listar todos os produtos ordenados por preço");
-        Console.WriteLine("-1: Voltar ao menu principal");
 
-        Console.Write("\nDigite a sua opção: ");
+        var opcoes = new[]
+          {
+                "Listar todos os produtos",
+                "Listar todos os produtos ordenados por nome",
+                "Listar todos os produtos ordenados por preço",
+                "Voltar ao menu principal",
+
+            };
+
+
+        string escolha = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("Selecione uma opção:")
+                .AddChoices(opcoes)
+        );
+
+
+        var opcaoEscolhida = opcoes.ToList().IndexOf(escolha) + 1;
+        if (opcaoEscolhida == opcoes.Length)
+        {
+            opcaoEscolhida = -1;
+        }
+
+        return opcaoEscolhida.ToString();
     }
     private void VoltarAoMenuPrincipal()
     {
