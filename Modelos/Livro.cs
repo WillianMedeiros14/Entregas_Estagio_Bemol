@@ -1,4 +1,6 @@
 
+using Spectre.Console;
+
 namespace Biblioteca.Modelos;
 
 public class Livro
@@ -27,9 +29,23 @@ public class Livro
 
     }
 
-    void ExibirInformacoes()
+    public void ExibirInformacoes()
     {
+        var table = new Table();
+        table.AddColumn("Titulo");
+        table.AddColumn("Autor");
+        table.AddColumn("ISBN");
+        table.AddColumn("Data de Publicação");
+        table.AddColumn("Está Emprestado");
 
+        table.AddRow(
+            Titulo,
+            Autor,
+            ISBN,
+            DataPublicacao.ToString("dd/MM/yyyy"),
+            EstaEmprestado ? "Sim" : "Não");
+
+        AnsiConsole.Write(table);
     }
 
 }
