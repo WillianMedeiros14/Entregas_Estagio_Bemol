@@ -13,19 +13,18 @@ livro2.Titulo = "O Hobbit";
 livro2.Autor = "J.R.R. Tolkien";
 livro2.ISBN = "978-0-395-19395-8";
 livro2.DataPublicacao = new DateTime(1937, 9, 21);
-livro2.EstaEmprestado = true;
+livro2.EstaEmprestado = false;
 
 
 List<Livro> livrosEmprestados = new List<Livro>{
     livro1,
-    livro2
 };
 
 Usuario usuario = new Usuario(
-           nome: "João Silva",
-           cpf: "123.456.789-00",
-           livrosEmprestados: livrosEmprestados
-       );
+    nome: "João Silva",
+    cpf: "123.456.789-00",
+    livrosEmprestados: livrosEmprestados
+);
 
 
 List<Livro> Livros = new List<Livro>();
@@ -37,10 +36,5 @@ Livros.Add(livro2);
 Usuarios.Add(usuario);
 
 
-// Biblioteca biblioteca = new Biblioteca(Livros, Usuarios);
-
-// biblioteca.AdicionarLivro(livro1);
-// biblioteca.RegistrarUsuario(usuario);
 MenuPrincipal menuPrincipal = new MenuPrincipal(Usuarios, Livros);
 menuPrincipal.Executar();
-

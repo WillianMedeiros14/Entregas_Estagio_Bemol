@@ -17,9 +17,9 @@ public class Usuario
         CPF = cpf;
     }
 
-    public void EmprestarLivro(List<Livro> livro)
+    public void EmprestarLivro(Livro livro)
     {
-
+        LivrosEmprestados.Add(livro);
     }
 
     public void DevolverLivro(List<Livro> livros)
