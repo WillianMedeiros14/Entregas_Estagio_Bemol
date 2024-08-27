@@ -13,11 +13,10 @@ namespace BibliotecaProjeto.Menus
             opcoes = new Dictionary<int, Menu>
             {
                 { 1, new MenuRegistrarUsuario(usuarios) },
-                { 2, new MenuRegistrarUsuario(usuarios)},
-                { 3, new MenuRegistrarUsuario(usuarios) },
+                { 2, new MenuAdicionarLivro(livros) },
+                { 3, new MenuLivrosDisponiveis(livros)},
                 { 4, new MenuRegistrarUsuario(usuarios) },
                 { 5, new MenuRegistrarUsuario(usuarios) },
-                { 6,new MenuRegistrarUsuario(usuarios) },
                 { -1, new MenuSair() }
             };
         }
