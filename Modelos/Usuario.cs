@@ -1,7 +1,7 @@
 
 using Spectre.Console;
 
-namespace Biblioteca.Modelos;
+namespace BibliotecaProjeto.Modelos;
 
 public class Usuario
 {
@@ -17,17 +17,17 @@ public class Usuario
         CPF = cpf;
     }
 
-    void EmprestarLivro(List<Livro> livro)
+    public void EmprestarLivro(List<Livro> livro)
     {
 
     }
 
-    void DevolverLivro(List<Livro> livro)
+    public void DevolverLivro(List<Livro> livro)
     {
 
     }
 
-    void ExibirHistoricoEmprestimos(List<Livro> livro)
+    public void ExibirHistoricoEmprestimos(List<Livro> livro)
     {
 
     }

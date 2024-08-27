@@ -1,7 +1,7 @@
 
 using Spectre.Console;
 
-namespace Biblioteca.Modelos;
+namespace BibliotecaProjeto.Modelos;
 
 public class Livro
 {
@@ -10,14 +10,6 @@ public class Livro
     public String ISBN { get; set; }
     public DateTime DataPublicacao { get; set; }
     public bool EstaEmprestado { get; set; }
-    public Livro(string titulo, string autor, String isbn, DateTime dataPublicacao, bool estaEmprestado)
-    {
-        Titulo = titulo;
-        Autor = autor;
-        ISBN = isbn;
-        DataPublicacao = dataPublicacao;
-        EstaEmprestado = estaEmprestado;
-    }
 
     void Emprestar()
     {
@@ -29,23 +21,33 @@ public class Livro
 
     }
 
-    public void ExibirInformacoes()
+    public void ExibirInformacoes(List<Livro> livros)
     {
-        var table = new Table();
-        table.AddColumn("Titulo");
-        table.AddColumn("Autor");
-        table.AddColumn("ISBN");
-        table.AddColumn("Data de Publicação");
-        table.AddColumn("Está Emprestado");
+        if (livros.Count == 0)
+        {
+            Console.WriteLine("Nenhum produto cadastrado.");
+        }
+        else
+        {
+            var table = new Table();
+            table.AddColumn("Titulo");
+            table.AddColumn("Autor");
+            table.AddColumn("ISBN");
+            table.AddColumn("Data de Publicação");
+            table.AddColumn("Está Emprestado");
 
-        table.AddRow(
-            Titulo,
-            Autor,
-            ISBN,
-            DataPublicacao.ToString("dd/MM/yyyy"),
-            EstaEmprestado ? "Sim" : "Não");
+            foreach (Livro livro in livros)
+            {
+                table.AddRow(
+                    livro.Titulo,
+                   livro.Autor,
+                    livro.ISBN,
+                   livro.DataPublicacao.ToString("dd/MM/yyyy"),
+                   livro.EstaEmprestado ? "Sim" : "Não");
+            }
 
-        AnsiConsole.Write(table);
+            AnsiConsole.Write(table);
+        }
     }
 
 }
