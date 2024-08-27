@@ -8,10 +8,10 @@ public class Biblioteca
     public List<Livro> Livros { get; set; }
     public List<Usuario> Usuarios { get; set; }
 
-    public Biblioteca()
+    public Biblioteca(List<Livro> livros, List<Usuario> usuario)
     {
-        Livros = new List<Livro>();
-        Usuarios = new List<Usuario>();
+        Livros = livros;
+        Usuarios = usuario;
     }
 
     public void AdicionarLivro(Livro livro)

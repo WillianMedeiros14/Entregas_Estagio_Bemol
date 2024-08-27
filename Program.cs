@@ -1,4 +1,5 @@
-﻿using BibliotecaProjeto.Modelos;
+﻿using BibliotecaProjeto.Menus;
+using BibliotecaProjeto.Modelos;
 
 Livro livro1 = new Livro();
 livro1.Titulo = "Dom Quixote";
@@ -26,15 +27,19 @@ Usuario usuario = new Usuario(
        );
 
 
+List<Livro> Livros = new List<Livro>();
+List<Usuario> Usuarios = new List<Usuario>();
 
-Biblioteca biblioteca = new Biblioteca();
+Livros.Add(livro1);
+Livros.Add(livro2);
 
-biblioteca.AdicionarLivro(livro1);
-biblioteca.AdicionarLivro(livro2);
-biblioteca.RegistrarUsuario(usuario);
-// biblioteca.ExibirLivrosDisponiveis();
+Usuarios.Add(usuario);
 
 
-biblioteca.ExibirTodosOsLivros();
-biblioteca.RemoverLivro(livro2);
-biblioteca.ExibirTodosOsLivros();
+// Biblioteca biblioteca = new Biblioteca(Livros, Usuarios);
+
+// biblioteca.AdicionarLivro(livro1);
+// biblioteca.RegistrarUsuario(usuario);
+MenuPrincipal menuPrincipal = new MenuPrincipal(Usuarios, Livros);
+menuPrincipal.Executar();
+
