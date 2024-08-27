@@ -15,8 +15,8 @@ namespace BibliotecaProjeto.Menus
                 { 1, new MenuRegistrarUsuario(usuarios) },
                 { 2, new MenuAdicionarLivro(livros) },
                 { 3, new MenuLivrosDisponiveis(livros)},
-                { 4, new MenuRegistrarUsuario(usuarios) },
-                { 5, new MenuRegistrarUsuario(usuarios) },
+                { 4, new MenuDevolverLivro(livros, usuarios) },
+                { 5, new MenuDevolverLivro(livros, usuarios) },
                 { -1, new MenuSair() }
             };
         }

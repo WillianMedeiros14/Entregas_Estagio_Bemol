@@ -13,11 +13,12 @@ livro2.Titulo = "O Hobbit";
 livro2.Autor = "J.R.R. Tolkien";
 livro2.ISBN = "978-0-395-19395-8";
 livro2.DataPublicacao = new DateTime(1937, 9, 21);
-livro2.EstaEmprestado = false;
+livro2.EstaEmprestado = true;
 
 
 List<Livro> livrosEmprestados = new List<Livro>{
     livro1,
+    livro2
 };
 
 Usuario usuario = new Usuario(

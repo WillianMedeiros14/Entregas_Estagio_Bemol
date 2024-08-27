@@ -22,14 +22,27 @@ public class Usuario
 
     }
 
-    public void DevolverLivro(List<Livro> livro)
+    public void DevolverLivro(List<Livro> livros)
     {
 
     }
 
-    public void ExibirHistoricoEmprestimos(List<Livro> livro)
+    public void ExibirHistoricoEmprestimos(List<Livro> livros)
     {
 
+    }
+
+    public void ExibirNomeECpf()
+    {
+        var table = new Table();
+        table.Border(TableBorder.Rounded);
+
+        table.AddColumn("[green]Nome[/]");
+        table.AddColumn("[green]CPF[/]");
+
+        table.AddRow(Nome, CPF);
+
+        AnsiConsole.Write(table);
     }
 }
 

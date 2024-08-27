@@ -40,7 +40,7 @@ public class Livro
             {
                 table.AddRow(
                     livro.Titulo,
-                   livro.Autor,
+                    livro.Autor,
                     livro.ISBN,
                    livro.DataPublicacao.ToString("dd/MM/yyyy"),
                    livro.EstaEmprestado ? "Sim" : "Não");
