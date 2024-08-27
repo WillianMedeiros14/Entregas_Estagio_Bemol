@@ -28,7 +28,7 @@ docker run -it -p 80:80 biblioteca-dotnet
 
 Para rodar o projeto sem o uso do docker siga os passos abaixo:
 
-- Depois de fazer o clone desse projeto, entre em sua IDE de prefrência e execute normalmente aplicação
+- Depois de fazer o clone desse projeto, entre em sua IDE de preferência e execute normalmente aplicação
 
 <br>
 
