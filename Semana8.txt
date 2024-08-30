@@ -1,0 +1,54 @@
+Conhecendo o protocolo HTTP 
+
+
+1. O que é HTTP e qual o seu papel na comunicação web? 
+
+- O HTTP, ou Hypertext Transfer Protocol, é um protocolo de  comunicação utilizado para transferência de informações na internet e em outros sistemas de rede. 
+- Ele é base para que haja comunicação entre o servidor e o cliente através da web. Permitindo requisições e respostas de recursos.  
+
+2. Explique a arquitetura do HTTP e os papéis do cliente (navegador) e do servidor (backend). 
+
+- O HTTP  é baseado em requisições e respostas, segue um modelo stateless, sendo assim, cada requisição é independente, e o servidor não mantem estado entre as requisições, ao menos que sejam empregadas outras técnicas, como cookies ou tokens por exemplo. 
+- Por ser baseado em requisições e respostas, alguém pede e outro responde, é ai que entra o papel do cliente e do servidor. O Cliente é responsável por fazer uma determinada solicitação ao servidor, seja ela um site, imagem ou alguma outra informação, o servidor recebe esse pedido, processa ou busca essa informação e responde par ao cliente, essa reposta pode ser com sucesso ou algum erro.  
+
+3. Quais são as camadas da arquitetura da internet e como o HTTP se relaciona com a camada de aplicação? 
+
+- Camada Física:  Transmite os dados fisicamente por cabos, ondas de rádio, etc. 
+- Camada de Enlace: Transfere dados entre dois dispositivos conectados diretamente. 
+- Camada de Rede: Roteia pacotes de dados entre diferentes redes, usando protocolos como o IP. 
+- Camada de Transporte: Garante a entrega dos pacotes entre dispositivos, com protocolos como TCP e UDP. 
+- Camada de Aplicação: Onde o HTTP opera, definindo como os dados são formatados, transmitidos e interpretados para aplicações específicas, como navegação web. 
+
+O HTTP é um protocolo da camada de aplicação, responsável por definir a comunicação entre cliente e servidor.  
+
+4. O que é um protocolo na comunicação entre dispositivos? Como o HTTP define as regras dessa "conversa"? 
+
+- Um protocolo é um conjunto de regras que define como a comunicação entre dispositivos ocorre, incluindo a estrutura dos dados, envio, recebimento e resposta a erros. 
+O HTTP estabelece essas regras para a comunicação entre cliente e servidor por meio de: 
+- Métodos HTTP: Por exemplo, GET, POST que definem ações como recuperar ou enviar dados. 
+- Mensagens: Estruturadas com cabeçalhos, corpo, e status de resposta. 
+- Códigos de Status: Por exemplo 200 OK, 404 Not Found, que indicam o resultado da requisição. 
+- Conexões: HTTP/1.1 permite conexões persistentes para múltiplas requisições/respostas sobre uma única conexão TCP. 
+
+5. Cite e explique um protocolo alternativo ao HTTP, como o P2P. Quais são as principais diferenças entre ele e o HTTP? 
+
+- Um alternativo ao HTTP é o P2P (Peer-to-Peer), onde funciona sem um servidor central, desse modo, permite que cada dispositivo na rede, atue como um cliente e servidor, compartilhando os seus recursos diretamente. 
+Esse protocolo é comumente utilizado para transferência de arquivos, torrents por exemplo.  
+
+Principais diferenças: 
+Arquitetura: 
+- HTTP: Modelo cliente-servidor com um servidor central. 
+- P2P: Rede distribuída, onde todos os dispositivos se comunicam diretamente. 
+Confiabilidade: 
+- HTTP: Mais confiável, com o servidor garantindo a entrega dos dados. 
+- P2P: Pode ser menos confiável, dependendo da disponibilidade dos peers. 
+Escalabilidade: 
+- HTTP: Limitada ao servidor, que pode se tornar um gargalo. 
+- P2P: Altamente escalável, com a carga distribuída entre os peers. 
+Privacidade: 
+- HTTP: Menos privado, com dados passando por um servidor central. 
+- P2P: Potencialmente mais privado, mas com desafios na segurança. 
+
+ 
+
+ 
